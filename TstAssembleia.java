@@ -43,6 +43,8 @@ public class TstAssembleia {
     System.out.println("VOTOS APROVAR....: " +assPresencial.getPauta().getVoto().getQtdAprovar());
     System.out.println("VOTOS REPROVAR...: " +assPresencial.getPauta().getVoto().getQtdReprovar());
     System.out.println("VOTOS ABSTENCAO..: " +assPresencial.getPauta().getVoto().getQtdAbster());
+
+    System.out.println("SOMA DPS VOTOS REPROVAR E ABSTER-SE É DE: " + assPresencial.countVotos());
   }
 
   public static void registerOnline() {
@@ -83,6 +85,8 @@ public class TstAssembleia {
     System.out.println("VOTOS APROVAR....: " +assOnline.getPauta().getVoto().getQtdAprovar());
     System.out.println("VOTOS REPROVAR...: " +assOnline.getPauta().getVoto().getQtdReprovar());
     System.out.println("VOTOS ABSTENCAO..: " +assOnline.getPauta().getVoto().getQtdAbster());
+
+    System.out.println("SOMA DOS VOTOS APROVAR E REPROVAR É DE: " + assOnline.countVotos());
   }
 
   public static void registerHibrida() {
@@ -123,6 +127,8 @@ public class TstAssembleia {
     System.out.println("VOTOS APROVAR....: " +assHibrida.getPauta().getVoto().getQtdAprovar());
     System.out.println("VOTOS REPROVAR...: " +assHibrida.getPauta().getVoto().getQtdReprovar());
     System.out.println("VOTOS ABSTENCAO..: " +assHibrida.getPauta().getVoto().getQtdAbster());
+
+    System.out.println("SOMA DOS VOTOS APROVAR E ABSTER-SE É DE: " + assHibrida.countVotos());
   }
 
   public static void main(String arg[]) {

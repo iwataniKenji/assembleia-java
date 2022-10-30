@@ -1,7 +1,7 @@
 // NOME: KLEVERSON KENJI IWATANI
 // RA: 2465205
 
-public class Hibrida extends Assembleia {
+public class Hibrida extends Assembleia implements Calc {
   private int codHibrida;
   private String endereco;
   private String linkAcesso;
@@ -40,5 +40,13 @@ public class Hibrida extends Assembleia {
   }
   public void setLinkAcesso(String linkAcesso) {
     this.linkAcesso = linkAcesso;
+  }
+
+  // retorna quantidade de votos 'APROVAR' + 'ABSTER'
+  public int countVotos() {
+    int aprovar = getPauta().getVoto().getQtdAprovar();
+    int abster = getPauta().getVoto().getQtdAbster();
+
+    return aprovar + abster;
   }
 }
