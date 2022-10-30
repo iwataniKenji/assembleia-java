@@ -32,13 +32,25 @@ public class Voto {
   }
 
   // setters
-  public void setQtdAprovar(int qtdAprovar) {
-    this.qtdAprovar = qtdAprovar;
+  public void setQtdAprovar(int qtdAprovar) throws NegativeNumberException {
+    if (qtdAprovar >= 0) {
+      this.qtdAprovar = qtdAprovar;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
-  public void setQtdReprovar(int qtdReprovar) {
-    this.qtdReprovar = qtdReprovar;
+  public void setQtdReprovar(int qtdReprovar) throws NegativeNumberException {
+    if (qtdReprovar >= 0) {
+      this.qtdReprovar = qtdReprovar;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
-  public void setQtdAbster(int qtdAbster) {
-    this.qtdAbster = qtdAbster;
+  public void setQtdAbster(int qtdAbster) throws NegativeNumberException {
+    if (qtdAbster >= 0) {
+      this.qtdAbster = qtdAbster;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
 }

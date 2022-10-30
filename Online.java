@@ -32,8 +32,12 @@ public class Online extends Assembleia implements Calc {
   }
 
   // setters
-  public void setCodOnline(int codOnline) {
-    this.codOnline = codOnline;
+  public void setCodOnline(int codOnline) throws NegativeNumberException {
+    if (codOnline >= 0) {
+      this.codOnline = codOnline;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
   public void setLinkAcesso(String linkAcesso) {
     this.linkAcesso = linkAcesso;

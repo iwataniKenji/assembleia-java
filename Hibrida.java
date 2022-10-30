@@ -32,8 +32,12 @@ public class Hibrida extends Assembleia implements Calc {
   }
 
   // setters
-  public void setCodHibrida(int codHibrida) {
-    this.codHibrida = codHibrida;
+  public void setCodHibrida(int codHibrida) throws NegativeNumberException{
+    if (codHibrida >= 0) {
+      this.codHibrida = codHibrida;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
   public void setEndereco(String endereco) {
     this.endereco = endereco;

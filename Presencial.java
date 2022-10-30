@@ -32,8 +32,12 @@ public class Presencial extends Assembleia implements Calc {
   }
 
   // setters
-  public void setCodPresencial(int codPresencial) {
-    this.codPresencial = codPresencial;
+  public void setCodPresencial(int codPresencial) throws NegativeNumberException {
+    if (codPresencial >= 0) {
+      this.codPresencial = codPresencial;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
   public void setEndereco(String endereco) {
     this.endereco = endereco;
