@@ -1,7 +1,7 @@
 // NOME: KLEVERSON KENJI IWATANI
 // RA: 2465205
 
-public class Assembleia {
+public abstract class Assembleia {
   private int id;
   private String nomeDaEmpresa;
   private String nomeDoOperador;
