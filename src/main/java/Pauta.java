@@ -41,11 +41,19 @@ public class Pauta {
   public void setVoto(Voto voto){
     this.voto  = voto;
   }
-  public void setOrdem(int ordem) {
-    this.ordem = ordem;
+  public void setOrdem(int ordem) throws NegativeNumberException {
+    if (ordem >= 0) {
+      this.ordem = ordem;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
-  public void setChapa(int chapa) {
-    this.chapa = chapa;
+  public void setChapa(int chapa) throws NegativeNumberException {
+    if (chapa >= 0) {
+      this.chapa = chapa;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
   public void setTema(String tema) {
     this.tema = tema;

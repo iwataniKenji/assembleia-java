@@ -1,7 +1,7 @@
 // NOME: KLEVERSON KENJI IWATANI
 // RA: 2465205
 
-public class Assembleia {
+public abstract class Assembleia {
   private int id;
   private String nomeDaEmpresa;
   private String nomeDoOperador;
@@ -41,8 +41,12 @@ public class Assembleia {
   public void setPauta(Pauta pauta){
 		this.pauta  = pauta;
 	}
-  public void setId(int id) {
-    this.id = id;
+  public void setId(int id) throws NegativeNumberException {
+    if (id >= 0) {
+      this.id = id;
+    } else {
+      throw new NegativeNumberException();
+    }
   }
   public void setNomeDaEmpresa(String nomeDaEmpresa) {
     this.nomeDaEmpresa = nomeDaEmpresa;
