@@ -28,6 +28,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     private void initComponents() {
 
         jPasswordField1 = new javax.swing.JPasswordField();
+        labelTitulo = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
         labelNomeDaEmpresa = new javax.swing.JLabel();
         labelNomeDoOperador = new javax.swing.JLabel();
@@ -53,6 +54,9 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Assembleias Híbridas");
+
+        labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        labelTitulo.setText("CADASTRO DE ASSEMBLEIAS HÍBRIDAS");
 
         labelId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelId.setText("ID:");
@@ -147,44 +151,51 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelTitulo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonCadastrar)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(buttonCadastrar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buttonConsultar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buttonAlterar))
+                                    .addComponent(labelId)
+                                    .addComponent(labelCodHibrida)
+                                    .addComponent(labelEndereco)
+                                    .addComponent(labelLinkAcesso)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelNomeDoOperador, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(labelNomeDaEmpresa)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonConsultar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonAlterar))
-                            .addComponent(labelId)
-                            .addComponent(labelCodHibrida)
-                            .addComponent(labelEndereco)
-                            .addComponent(labelLinkAcesso)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelNomeDoOperador, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelNomeDaEmpresa)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonExcluir)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textfieldLinkAcesso)
-                                    .addComponent(textfieldNomeDaEmpresa)
-                                    .addComponent(textfieldNomeDoOperador)
-                                    .addComponent(textfieldId)
-                                    .addComponent(textfieldCodHibrida)
-                                    .addComponent(textfieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(buttonLimpar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonSair))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 28, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonExcluir)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(textfieldLinkAcesso)
+                                            .addComponent(textfieldNomeDaEmpresa)
+                                            .addComponent(textfieldNomeDoOperador)
+                                            .addComponent(textfieldId)
+                                            .addComponent(textfieldCodHibrida)
+                                            .addComponent(textfieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(buttonLimpar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(buttonSair))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 28, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(labelTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelId)
                     .addComponent(textfieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -535,6 +546,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     private javax.swing.JLabel labelLinkAcesso;
     private javax.swing.JLabel labelNomeDaEmpresa;
     private javax.swing.JLabel labelNomeDoOperador;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JTable tableAssembleia;
     private javax.swing.JTextField textfieldCodHibrida;
     private javax.swing.JTextField textfieldEndereco;
