@@ -25,8 +25,8 @@ public class Assembleia {
 
   // getters
   public Pauta getPauta(){
-		return pauta;
-	}
+    return pauta;
+  }
   public int getId() {
     return id;
   }
