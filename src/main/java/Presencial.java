@@ -47,6 +47,7 @@ public class Presencial extends Assembleia implements Calc {
   }
 
   // retorna quantidade de votos 'REPROVAR' + 'ABSTER'
+  @Override
   public int countVotos() {
     int reprovar = getPauta().getVoto().getQtdReprovar();
     int abster = getPauta().getVoto().getQtdAbster();

@@ -39,8 +39,8 @@ public abstract class Assembleia {
 
   // setters
   public void setPauta(Pauta pauta){
-		this.pauta  = pauta;
-	}
+    this.pauta  = pauta;
+  }
   public void setId(int id) throws NegativeNumberException {
     if (id >= 0) {
       this.id = id;

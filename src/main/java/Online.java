@@ -47,6 +47,7 @@ public class Online extends Assembleia implements Calc {
   }
 
   // retorna quantidade de votos 'APROVAR' + 'REPROVAR'
+  @Override
   public int countVotos() {
     int aprovar = getPauta().getVoto().getQtdAprovar();
     int reprovar = getPauta().getVoto().getQtdReprovar();

@@ -47,6 +47,7 @@ public class Hibrida extends Assembleia implements Calc {
   }
 
   // retorna quantidade de votos 'APROVAR' + 'ABSTER'
+  @Override
   public int countVotos() {
     int aprovar = getPauta().getVoto().getQtdAprovar();
     int abster = getPauta().getVoto().getQtdAbster();

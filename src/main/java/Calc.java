@@ -2,7 +2,5 @@
 // RA: 2465205
 
 public interface Calc {
-
   public int countVotos();
-
 }

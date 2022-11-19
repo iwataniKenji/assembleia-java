@@ -1,193 +1,146 @@
 // NOME: KLEVERSON KENJI IWATANI
 // RA: 2465205
 
-public class Principal {
-  static Leitura leitura = new Leitura();
-  static int option = 0;
-  static boolean proceed = true;
+import javax.swing.JOptionPane;
 
-  public static void registerPresencial() {
-    Presencial assPresencial = new Presencial();
+public class Principal extends javax.swing.JFrame {
+    public Principal() {
+        initComponents();
+    }
 
-    while (proceed) {
-      try {
-        // da classe assembleia  
-        assPresencial.setId(Integer.parseInt(leitura.dataInput("\nDigite o ID: ")));
-        assPresencial.setNomeDaEmpresa(leitura.dataInput("\nDigite o nome da empresa: "));
-        assPresencial.setNomeDoOperador(leitura.dataInput("\nDigite o nome do operador da assembleia: "));
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-        // da classe presencial
-        assPresencial.setCodPresencial(Integer.parseInt(leitura.dataInput("\nDigite o codigo da assembleia: ")));
-        assPresencial.setEndereco(leitura.dataInput("\nDigite o endereço do evento: "));
-        assPresencial.setCapacidadePessoasSalao(Integer.parseInt(leitura.dataInput("\nDigite a capacidade de pessoas no salão: ")));
+        labelPrincipal = new javax.swing.JLabel();
+        menubarPrincipal = new javax.swing.JMenuBar();
+        menuCadAssembleia = new javax.swing.JMenu();
+        submenuCadAssembleia = new javax.swing.JMenu();
+        menuItemAbrirCadPresencial = new javax.swing.JMenuItem();
+        menuItemAbrirCadOnline = new javax.swing.JMenuItem();
+        menuItemAbrirCadHibrida = new javax.swing.JMenuItem();
+        menuFechar = new javax.swing.JMenu();
+        menuItemFechar = new javax.swing.JMenuItem();
 
-        // da classe pauta
-        assPresencial.getPauta().setOrdem(Integer.parseInt(leitura.dataInput("\nDigite a ordem da pauta: ")));
-        assPresencial.getPauta().setChapa(Integer.parseInt(leitura.dataInput("\nDigite a chapa: ")));
-        assPresencial.getPauta().setTema(leitura.dataInput("\nDigite o tema: "));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Principal");
 
-        // da classe voto
-        assPresencial.getPauta().getVoto().setQtdAprovar(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'APROVAR': ")));
-        assPresencial.getPauta().getVoto().setQtdReprovar(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'REPROVAR': ")));
-        assPresencial.getPauta().getVoto().setQtdAbster(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'ABSTENCAO': ")));
+        labelPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        labelPrincipal.setText("Sistema de Gestão de Assembleias");
 
-        proceed = false;
-      } catch (NegativeNumberException exception) {
-        exception.printNegativeNumber();
-      }
+        menuCadAssembleia.setText("Cadastro");
+
+        submenuCadAssembleia.setText("Abrir Cadastro de Assembleia...");
+
+        menuItemAbrirCadPresencial.setText("Presencial");
+        submenuCadAssembleia.add(menuItemAbrirCadPresencial);
+
+        menuItemAbrirCadOnline.setText("Online");
+        submenuCadAssembleia.add(menuItemAbrirCadOnline);
+
+        menuItemAbrirCadHibrida.setText("Híbrida");
+        menuItemAbrirCadHibrida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAbrirCadHibridaActionPerformed(evt);
+            }
+        });
+        submenuCadAssembleia.add(menuItemAbrirCadHibrida);
+
+        menuCadAssembleia.add(submenuCadAssembleia);
+
+        menubarPrincipal.add(menuCadAssembleia);
+
+        menuFechar.setText("Fechar");
+
+        menuItemFechar.setText("Fechar");
+        menuItemFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemFecharActionPerformed(evt);
+            }
+        });
+        menuFechar.add(menuItemFechar);
+
+        menubarPrincipal.add(menuFechar);
+
+        setJMenuBar(menubarPrincipal);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(labelPrincipal)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(labelPrincipal)
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void menuItemAbrirCadHibridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAbrirCadHibridaActionPerformed
+        // retorna formulário em instância única
+        CadAssembleiaHibrida.getCadAssembleiaHibrida().setVisible(true);
+    }//GEN-LAST:event_menuItemAbrirCadHibridaActionPerformed
+
+    private void menuItemFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFecharActionPerformed
+        sair();
+    }//GEN-LAST:event_menuItemFecharActionPerformed
+
+    public void sair() {
+        int response = JOptionPane.showConfirmDialog(
+            null,
+            "Deseja sair da aplicação?",
+            "Sair",
+            JOptionPane.YES_NO_CANCEL_OPTION
+        );
+        
+        if (response == 0) {
+            // this -> próprio botão
+            this.dispose();
+        }
     }
     
-    System.out.println("\nDADOS DA ASSEMBLEIA PRESENCIAL:");
-    System.out.println("ID...............: " +assPresencial.getId());
-    System.out.println("NOME DA EMPRESA..: " +assPresencial.getNomeDaEmpresa());
-    System.out.println("NOME DO OPERADOR.: " +assPresencial.getNomeDoOperador());
-    System.out.println("CODIGO PRESENCIAL: " +assPresencial.getCodPresencial());
-    System.out.println("ENDERECO.........: " +assPresencial.getEndereco());
-    System.out.println("CAPACIDADE SALAO.: " +assPresencial.getCapacidadePessoasSalao());
-    System.out.println("\nDADOS DA PAUTA:");
-    System.out.println("ORDEM DA PAUTA...: " +assPresencial.getPauta().getOrdem());
-    System.out.println("CHAPA............: " +assPresencial.getPauta().getChapa());
-    System.out.println("TEMA.............: " +assPresencial.getPauta().getTema());
-    System.out.println("\nQUANTIDADE DE VOTOS:");
-    System.out.println("VOTOS APROVAR....: " +assPresencial.getPauta().getVoto().getQtdAprovar());
-    System.out.println("VOTOS REPROVAR...: " +assPresencial.getPauta().getVoto().getQtdReprovar());
-    System.out.println("VOTOS ABSTENCAO..: " +assPresencial.getPauta().getVoto().getQtdAbster());
-
-    System.out.println("SOMA DE VOTOS REPROVAR E ABSTER-SE É DE: " + assPresencial.countVotos());
-  }
-
-  public static void registerOnline() {
-    Online assOnline = new Online();
-
-    while (proceed) {
-      try {
-        // da classe assembleia
-        assOnline.setId(Integer.parseInt(leitura.dataInput("\nDigite o ID: ")));
-        assOnline.setNomeDaEmpresa(leitura.dataInput("\nDigite o nome da empresa: "));
-        assOnline.setNomeDoOperador(leitura.dataInput("\nDigite o nome do operador da assembleia: "));
-
-        // da classe online
-        assOnline.setCodOnline(Integer.parseInt(leitura.dataInput("\nDigite o codigo da assembleia: ")));
-        assOnline.setLinkAcesso(leitura.dataInput("\nDigite o link da chamada: "));
-        assOnline.setPlataformaUtilizada(leitura.dataInput("\nDigite a plataforma utilizada: "));
-
-        // da classe pauta
-        assOnline.getPauta().setOrdem(Integer.parseInt(leitura.dataInput("\nDigite a ordem da pauta: ")));
-        assOnline.getPauta().setChapa(Integer.parseInt(leitura.dataInput("\nDigite a chapa: ")));
-        assOnline.getPauta().setTema(leitura.dataInput("\nDigite o tema: "));
-
-        // da classe voto
-        assOnline.getPauta().getVoto().setQtdAprovar(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'APROVAR': ")));
-        assOnline.getPauta().getVoto().setQtdReprovar(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'REPROVAR': ")));
-        assOnline.getPauta().getVoto().setQtdAbster(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'ABSTENCAO': ")));
-
-        proceed = false;
-      } catch (NegativeNumberException exception) {
-        exception.printNegativeNumber();
-      }
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Principal().setVisible(true);
+            }
+        });
     }
 
-    System.out.println("\nDADOS DA ASSEMBLEIA ONLINE:");
-    System.out.println("ID...............: " +assOnline.getId());
-    System.out.println("NOME DA EMPRESA..: " +assOnline.getNomeDaEmpresa());
-    System.out.println("NOME DO OPERADOR.: " +assOnline.getNomeDoOperador());
-    System.out.println("CODIGO ONLINE....: " +assOnline.getCodOnline());
-    System.out.println("LINK DE ACESSO...: " +assOnline.getLinkAcesso());
-    System.out.println("PLATAFORMA.......: " +assOnline.getPlataformaUtilizada());
-    System.out.println("\nDADOS DA PAUTA:");
-    System.out.println("ORDEM DA PAUTA...: " +assOnline.getPauta().getOrdem());
-    System.out.println("CHAPA............: " +assOnline.getPauta().getChapa());
-    System.out.println("TEMA.............: " +assOnline.getPauta().getTema());
-    System.out.println("\nQUANTIDADE DE VOTOS:");
-    System.out.println("VOTOS APROVAR....: " +assOnline.getPauta().getVoto().getQtdAprovar());
-    System.out.println("VOTOS REPROVAR...: " +assOnline.getPauta().getVoto().getQtdReprovar());
-    System.out.println("VOTOS ABSTENCAO..: " +assOnline.getPauta().getVoto().getQtdAbster());
-
-    System.out.println("SOMA DOS VOTOS APROVAR E REPROVAR É DE: " + assOnline.countVotos());
-  }
-
-  public static void registerHibrida() {
-    Hibrida assHibrida = new Hibrida();
-
-    while (proceed) {
-      try {
-        // da classe assembleia
-        assHibrida.setId(Integer.parseInt(leitura.dataInput("\nDigite o ID: ")));
-        assHibrida.setNomeDaEmpresa(leitura.dataInput("\nDigite o nome da empresa: "));
-        assHibrida.setNomeDoOperador(leitura.dataInput("\nDigite o nome do operador da assembleia: "));
-
-        // da classe hibrida
-        assHibrida.setCodHibrida(Integer.parseInt(leitura.dataInput("\nDigite o codigo da assembleia hibrida: ")));
-        assHibrida.setEndereco(leitura.dataInput("\nDigite o endereço do evento: "));
-        assHibrida.setLinkAcesso(leitura.dataInput("\nDigite o link da chamada: "));
-
-        // da classe pauta
-        assHibrida.getPauta().setOrdem(Integer.parseInt(leitura.dataInput("\nDigite a ordem da pauta: ")));
-        assHibrida.getPauta().setChapa(Integer.parseInt(leitura.dataInput("\nDigite a chapa: ")));
-        assHibrida.getPauta().setTema(leitura.dataInput("\nDigite o tema: "));
-
-        // da classe voto
-        assHibrida.getPauta().getVoto().setQtdAprovar(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'APROVAR': ")));
-        assHibrida.getPauta().getVoto().setQtdReprovar(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'REPROVAR': ")));
-        assHibrida.getPauta().getVoto().setQtdAbster(Integer.parseInt(leitura.dataInput("\nDigite a quantidade de votos 'ABSTENCAO': ")));
-
-        proceed = false;
-      } catch (NegativeNumberException exception) {
-        exception.printNegativeNumber();
-      }
-    }
-
-    System.out.println("\nDADOS DA ASSEMBLEIA HÍBRIDA:");
-    System.out.println("ID..............: " +assHibrida.getId());
-    System.out.println("NOME DA EMPRESA.: " +assHibrida.getNomeDaEmpresa());
-    System.out.println("NOME DO OPERADOR: " +assHibrida.getNomeDoOperador());
-    System.out.println("CODIGO HIBRIDA..: " +assHibrida.getCodHibrida());
-    System.out.println("ENDERECO........: " +assHibrida.getEndereco());
-    System.out.println("LINK DE ACESSO..: " +assHibrida.getLinkAcesso());
-    System.out.println("\nDADOS DA PAUTA:");
-    System.out.println("ORDEM DA PAUTA...: " +assHibrida.getPauta().getOrdem());
-    System.out.println("CHAPA............: " +assHibrida.getPauta().getChapa());
-    System.out.println("TEMA.............: " +assHibrida.getPauta().getTema());
-    System.out.println("\nQUANTIDADE DE VOTOS:");
-    System.out.println("VOTOS APROVAR....: " +assHibrida.getPauta().getVoto().getQtdAprovar());
-    System.out.println("VOTOS REPROVAR...: " +assHibrida.getPauta().getVoto().getQtdReprovar());
-    System.out.println("VOTOS ABSTENCAO..: " +assHibrida.getPauta().getVoto().getQtdAbster());
-
-    System.out.println("SOMA DOS VOTOS APROVAR E ABSTER-SE É DE: " + assHibrida.countVotos());
-  }
-
-  public static void main(String arg[]) {    
-    // menu de cadastro
-    System.out.println("MENU:");
-    System.out.println("1 - PRESENCIAL");
-    System.out.println("2 - ONLINE");
-    System.out.println("3 - HÍBRIDA");
-
-    option = 0;
-
-    while (option != 1 && option != 2 && option != 3) {
-      option = Integer.parseInt(leitura.dataInput("\nDIGITE O TIPO DE ASSEMBLEIA QUE DESEJA CADASTRAR: "));
-
-      if (option != 1 && option != 2 && option != 3) {
-        System.out.println("\nCÓDIGO INCORRETO. TENTE NOVAMENTE.");
-      }
-    }
-
-    switch(option) {
-      case 1:
-        registerPresencial();
-        break;
-      case 2:
-        registerOnline();
-        break;
-      case 3:
-        registerHibrida();
-        break;
-      default:
-        System.out.println("Erro na aplicação. Por favor contacte o suporte.");
-        break;
-    }    
-
-    System.out.println("\nFIM DO PROGRAMA");
-  }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelPrincipal;
+    private javax.swing.JMenu menuCadAssembleia;
+    private javax.swing.JMenu menuFechar;
+    private javax.swing.JMenuItem menuItemAbrirCadHibrida;
+    private javax.swing.JMenuItem menuItemAbrirCadOnline;
+    private javax.swing.JMenuItem menuItemAbrirCadPresencial;
+    private javax.swing.JMenuItem menuItemFechar;
+    private javax.swing.JMenuBar menubarPrincipal;
+    private javax.swing.JMenu submenuCadAssembleia;
+    // End of variables declaration//GEN-END:variables
 }
