@@ -1,4 +1,5 @@
 // NOME: KLEVERSON KENJI IWATANI
+// CURSO: Análise e Desenvolvimento de Sistemas
 // RA: 2465205
 
 import javax.swing.JOptionPane;
@@ -7,12 +8,10 @@ import javax.swing.table.DefaultTableModel;
 public class CadAssembleiaPresencial extends javax.swing.JFrame {
     
     // para uso nos botões
-    private Presencial presencial;
-    private static GerAssembleiaPresencial gerAssembleia = new GerAssembleiaPresencial();
-    
+    private Presencial presencial;    
     private static CadAssembleiaPresencial cadAssembleiaPresencialUnico;
 
-    public CadAssembleiaPresencial() {
+    private CadAssembleiaPresencial() {
         initComponents();
     }
     
@@ -49,6 +48,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
         buttonExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAssembleia = new javax.swing.JTable();
+        comboAssembleia = new javax.swing.JComboBox<>();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -141,7 +141,18 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
                 "ID", "EMPRESA", "OPERADOR", "CODIGO", "ENDEREÇO", "CAP. PESSOAS"
             }
         ));
+        tableAssembleia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableAssembleiaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableAssembleia);
+
+        comboAssembleia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAssembleiaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +193,8 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
                                         .addComponent(textfieldCodPresencial)
                                         .addComponent(textfieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addComponent(comboAssembleia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
                                     .addComponent(buttonLimpar)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(buttonSair))
@@ -228,7 +241,8 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSair)
-                    .addComponent(buttonLimpar))
+                    .addComponent(buttonLimpar)
+                    .addComponent(comboAssembleia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -250,6 +264,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         cadastrarAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultarActionPerformed
@@ -259,16 +274,89 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
         alterarAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         excluirAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void textfieldCodPresencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldCodPresencialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldCodPresencialActionPerformed
+
+    private void comboAssembleiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAssembleiaActionPerformed
+        selectComboAssembleia();
+    }//GEN-LAST:event_comboAssembleiaActionPerformed
+
+    private void tableAssembleiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableAssembleiaMouseClicked
+        selectTableAssembeia();
+    }//GEN-LAST:event_tableAssembleiaMouseClicked
+
+    public void listarTabela() {
+        // estrutura da table
+        DefaultTableModel modelo = (DefaultTableModel) tableAssembleia.getModel();
+        
+        int posicaoLinha = 0;
+        
+        // setta linha da table
+        modelo.setRowCount(posicaoLinha);
+        
+        // percorre cada pessoa
+         for(Presencial presencial : GerAssembleiaPresencial.getGerAssembleia().getBdAssembleia()){
+            modelo.insertRow(posicaoLinha, new Object [] {
+                presencial.getId(),
+                presencial.getNomeDaEmpresa(),
+                presencial.getNomeDoOperador(),
+                presencial.getCodPresencial(),
+                presencial.getEndereco(),
+                presencial.getCapacidadePessoasSalao()
+            });
+            posicaoLinha++;
+        }
+    } 
+
+    public void selectTableAssembeia(){
+        String valLin = "";
+        int posicaoLinha = tableAssembleia.getSelectedRow();
+        
+        for(int coluna = 0; coluna < tableAssembleia.getColumnCount(); coluna++){
+            valLin += tableAssembleia.getModel().getValueAt(posicaoLinha, coluna).toString();
+            if(coluna+1 < tableAssembleia.getColumnCount()){
+                valLin += " - ";
+            }
+        }
+    
+        JOptionPane.showMessageDialog(
+            null,
+            "Dados selecionados foram \n" + valLin,
+            "Seleção em Tabela",
+            1
+        );
+    }
+
+    public void carregaComboAssembleia(){
+        comboAssembleia.removeAllItems();
+        comboAssembleia.addItem("Escolha uma assembleia");
+        
+        for (Presencial presencial : GerAssembleiaPresencial.getGerAssembleia().getBdAssembleia()){
+            comboAssembleia.addItem("ID: "+presencial.getId()+ " - EMPRESA: "+presencial.getNomeDaEmpresa()+ " - OPERADOR: "+presencial.getNomeDoOperador());
+        }
+    }
+
+    public void selectComboAssembleia(){
+        if(comboAssembleia.getSelectedIndex()>=1){
+            String valLin = comboAssembleia.getSelectedItem().toString();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Assembleia escolhida: \n" + valLin,
+                    "Seleção de assembleia",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }
 
     public void excluirAssembleia() {
         presencial = new Presencial();
@@ -276,7 +364,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
         try {
             presencial.setId(Integer.parseInt(textfieldId.getText()));
             
-            presencial = gerAssembleia.consAssembleiaById(presencial);
+            presencial = GerAssembleiaPresencial.getGerAssembleia().consAssembleiaById(presencial);
         
             if (presencial != null) {
                 textfieldId.setText(Integer.toString(presencial.getId()));
@@ -294,7 +382,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
                 );
                 
                 if (opcao == 0) {
-                    gerAssembleia.removeAssembleiaById(presencial);
+                    GerAssembleiaPresencial.getGerAssembleia().removeAssembleiaById(presencial);
                     
                     JOptionPane.showMessageDialog(
                         null,
@@ -331,7 +419,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
         try {
             presencial.setId(Integer.parseInt(textfieldId.getText()));
             
-            presencial = gerAssembleia.atualizaAssembleiaById(presencial);
+            presencial = GerAssembleiaPresencial.getGerAssembleia().atualizaAssembleiaById(presencial);
         
             if (presencial != null) {
                 textfieldId.setText(Integer.toString(presencial.getId()));
@@ -368,29 +456,6 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
             textfieldId.requestFocus();
         }
     }
-    
-    public void listarTabela() {
-        // estrutura da table
-        DefaultTableModel modelo = (DefaultTableModel) tableAssembleia.getModel();
-        
-        int posicaoLinha = 0;
-        
-        // setta linha da table
-        modelo.setRowCount(posicaoLinha);
-        
-        // percorre cada pessoa
-        for (Presencial presencial : gerAssembleia.getBdAssembleia()) {
-            modelo.insertRow(posicaoLinha, new Object [] {
-                presencial.getId(),
-                presencial.getNomeDaEmpresa(),
-                presencial.getNomeDoOperador(),
-                presencial.getCodPresencial(),
-                presencial.getEndereco(),
-                presencial.getCapacidadePessoasSalao()
-            });
-            posicaoLinha++;
-        }
-    } 
             
     public void consultarAssembleia() {
         presencial = new Presencial();
@@ -398,7 +463,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
         try {
             presencial.setId(Integer.parseInt(textfieldId.getText()));
             
-            presencial = gerAssembleia.consAssembleiaById(presencial);
+            presencial = GerAssembleiaPresencial.getGerAssembleia().consAssembleiaById(presencial);
         
             if (presencial != null) {
                 textfieldId.setText(Integer.toString(presencial.getId()));
@@ -448,7 +513,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
             presencial.setCapacidadePessoasSalao(Integer.parseInt(textfieldCapacidadePessoasSalao.getText()));
             
             // faz cadastro no gerenciador
-            presencial = gerAssembleia.cadAssembleia(presencial);
+            presencial = GerAssembleiaPresencial.getGerAssembleia().cadAssembleia(presencial);
             
             if (presencial != null) {
                 JOptionPane.showMessageDialog(
@@ -536,6 +601,7 @@ public class CadAssembleiaPresencial extends javax.swing.JFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonSair;
+    private javax.swing.JComboBox<String> comboAssembleia;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCapacidadePessoasSalao;

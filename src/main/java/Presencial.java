@@ -1,4 +1,5 @@
 // NOME: KLEVERSON KENJI IWATANI
+// CURSO: Análise e Desenvolvimento de Sistemas
 // RA: 2465205
 
 public class Presencial extends Assembleia implements Calc {

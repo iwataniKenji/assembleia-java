@@ -1,4 +1,5 @@
 // NOME: KLEVERSON KENJI IWATANI
+// CURSO: Análise e Desenvolvimento de Sistemas
 // RA: 2465205
 
 import javax.swing.JOptionPane;
@@ -7,12 +8,10 @@ import javax.swing.table.DefaultTableModel;
 public class CadAssembleiaHibrida extends javax.swing.JFrame {
     
     // para uso nos botões
-    private Hibrida hibrida;
-    private static GerAssembleiaHibrida gerAssembleia = new GerAssembleiaHibrida();
-    
+    private Hibrida hibrida;    
     private static CadAssembleiaHibrida cadAssembleiaHibridaUnico;
 
-    public CadAssembleiaHibrida() {
+    private CadAssembleiaHibrida() {
         initComponents();
     }
     
@@ -49,6 +48,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         buttonExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAssembleia = new javax.swing.JTable();
+        comboAssembleia = new javax.swing.JComboBox<>();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -141,7 +141,18 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                 "ID", "EMPRESA", "OPERADOR", "CODIGO", "ENDEREÇO", "LINK"
             }
         ));
+        tableAssembleia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableAssembleiaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableAssembleia);
+
+        comboAssembleia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAssembleiaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +193,8 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                                         .addComponent(textfieldCodHibrida)
                                         .addComponent(textfieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addComponent(comboAssembleia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
                                     .addComponent(buttonLimpar)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(buttonSair))
@@ -228,7 +241,8 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSair)
-                    .addComponent(buttonLimpar))
+                    .addComponent(buttonLimpar)
+                    .addComponent(comboAssembleia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -250,6 +264,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         cadastrarAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultarActionPerformed
@@ -259,24 +274,97 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
         alterarAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         excluirAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void textfieldCodHibridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldCodHibridaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldCodHibridaActionPerformed
 
+    private void comboAssembleiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAssembleiaActionPerformed
+        selectComboAssembleia();
+    }//GEN-LAST:event_comboAssembleiaActionPerformed
+
+    private void tableAssembleiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableAssembleiaMouseClicked
+        selectTableAssembeia();
+    }//GEN-LAST:event_tableAssembleiaMouseClicked
+    
+    public void listarTabela() {
+        // estrutura da table
+        DefaultTableModel modelo = (DefaultTableModel) tableAssembleia.getModel();
+        
+        int posicaoLinha = 0;
+        
+        // setta linha da table
+        modelo.setRowCount(posicaoLinha);
+        
+        // percorre cada pessoa
+         for(Hibrida hibrida : GerAssembleiaHibrida.getGerAssembleia().getBdAssembleia()){
+            modelo.insertRow(posicaoLinha, new Object [] {
+                hibrida.getId(),
+                hibrida.getNomeDaEmpresa(),
+                hibrida.getNomeDoOperador(),
+                hibrida.getCodHibrida(),
+                hibrida.getEndereco(),
+                hibrida.getLinkAcesso()
+            });
+            posicaoLinha++;
+        }
+    } 
+    
+    public void selectTableAssembeia(){
+        String valLin = "";
+        int posicaoLinha = tableAssembleia.getSelectedRow();
+        
+        for(int coluna = 0; coluna < tableAssembleia.getColumnCount(); coluna++){
+            valLin += tableAssembleia.getModel().getValueAt(posicaoLinha, coluna).toString();
+            if(coluna+1 < tableAssembleia.getColumnCount()){
+                valLin += " - ";
+            }
+        }
+    
+        JOptionPane.showMessageDialog(
+            null,
+            "Dados selecionados foram \n" + valLin,
+            "Seleção em Tabela",
+            1
+        );
+    }
+    
+    public void carregaComboAssembleia(){
+        comboAssembleia.removeAllItems();
+        comboAssembleia.addItem("Escolha uma assembleia");
+        
+        for (Hibrida hibrida : GerAssembleiaHibrida.getGerAssembleia().getBdAssembleia()){
+            comboAssembleia.addItem("ID: "+hibrida.getId()+ " - EMPRESA: "+hibrida.getNomeDaEmpresa()+ " - OPERADOR: "+hibrida.getNomeDoOperador());
+        }
+    }
+    
+    public void selectComboAssembleia(){
+        if(comboAssembleia.getSelectedIndex()>=1){
+            String valLin = comboAssembleia.getSelectedItem().toString();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Assembleia escolhida: \n" + valLin,
+                    "Seleção de assembleia",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }
+    
     public void excluirAssembleia() {
         hibrida = new Hibrida();
         
         try {
             hibrida.setId(Integer.parseInt(textfieldId.getText()));
             
-            hibrida = gerAssembleia.consAssembleiaById(hibrida);
+            hibrida = GerAssembleiaHibrida.getGerAssembleia().consAssembleiaById(hibrida);
         
             if (hibrida != null) {
                 textfieldId.setText(Integer.toString(hibrida.getId()));
@@ -294,7 +382,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                 );
                 
                 if (opcao == 0) {
-                    gerAssembleia.removeAssembleiaById(hibrida);
+                    GerAssembleiaHibrida.getGerAssembleia().removeAssembleiaById(hibrida);
                     
                     JOptionPane.showMessageDialog(
                         null,
@@ -331,7 +419,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         try {
             hibrida.setId(Integer.parseInt(textfieldId.getText()));
             
-            hibrida = gerAssembleia.atualizaAssembleiaById(hibrida);
+            hibrida = GerAssembleiaHibrida.getGerAssembleia().atualizaAssembleiaById(hibrida);
         
             if (hibrida != null) {
                 textfieldId.setText(Integer.toString(hibrida.getId()));
@@ -368,29 +456,6 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
             textfieldId.requestFocus();
         }
     }
-    
-    public void listarTabela() {
-        // estrutura da table
-        DefaultTableModel modelo = (DefaultTableModel) tableAssembleia.getModel();
-        
-        int posicaoLinha = 0;
-        
-        // setta linha da table
-        modelo.setRowCount(posicaoLinha);
-        
-        // percorre cada pessoa
-        for (Hibrida hibrida : gerAssembleia.getBdAssembleia()) {
-            modelo.insertRow(posicaoLinha, new Object [] {
-                hibrida.getId(),
-                hibrida.getNomeDaEmpresa(),
-                hibrida.getNomeDoOperador(),
-                hibrida.getCodHibrida(),
-                hibrida.getEndereco(),
-                hibrida.getLinkAcesso()
-            });
-            posicaoLinha++;
-        }
-    } 
             
     public void consultarAssembleia() {
         hibrida = new Hibrida();
@@ -398,7 +463,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         try {
             hibrida.setId(Integer.parseInt(textfieldId.getText()));
             
-            hibrida = gerAssembleia.consAssembleiaById(hibrida);
+            hibrida = GerAssembleiaHibrida.getGerAssembleia().consAssembleiaById(hibrida);
         
             if (hibrida != null) {
                 textfieldId.setText(Integer.toString(hibrida.getId()));
@@ -448,7 +513,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
             hibrida.setLinkAcesso(textfieldLinkAcesso.getText());
             
             // faz cadastro no gerenciador
-            hibrida = gerAssembleia.cadAssembleia(hibrida);
+            hibrida = GerAssembleiaHibrida.getGerAssembleia().cadAssembleia(hibrida);
             
             if (hibrida != null) {
                 JOptionPane.showMessageDialog(
@@ -536,6 +601,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonSair;
+    private javax.swing.JComboBox<String> comboAssembleia;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCodHibrida;

@@ -1,4 +1,5 @@
 // NOME: KLEVERSON KENJI IWATANI
+// CURSO: Análise e Desenvolvimento de Sistemas
 // RA: 2465205
 
 import javax.swing.JOptionPane;
@@ -7,12 +8,10 @@ import javax.swing.table.DefaultTableModel;
 public class CadAssembleiaOnline extends javax.swing.JFrame {
     
     // para uso nos botões
-    private Online online;
-    private static GerAssembleiaOnline gerAssembleia = new GerAssembleiaOnline();
-    
+    private Online online;    
     private static CadAssembleiaOnline cadAssembleiaOnlineUnico;
 
-    public CadAssembleiaOnline() {
+    private CadAssembleiaOnline() {
         initComponents();
     }
     
@@ -49,6 +48,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
         buttonExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAssembleia = new javax.swing.JTable();
+        comboAssembleia = new javax.swing.JComboBox<>();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -141,7 +141,18 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
                 "ID", "EMPRESA", "OPERADOR", "CODIGO", "LINK", "PLATAFORMA"
             }
         ));
+        tableAssembleia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableAssembleiaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableAssembleia);
+
+        comboAssembleia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAssembleiaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,44 +160,46 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelTitulo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(labelTitulo)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(buttonCadastrar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonConsultar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonAlterar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonExcluir))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonCadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonConsultar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonExcluir))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelId)
+                                    .addComponent(labelCodOnline)
+                                    .addComponent(labelLinkAcesso)
+                                    .addComponent(labelPlataformaUtilizada)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelId)
-                                        .addComponent(labelCodOnline)
-                                        .addComponent(labelLinkAcesso)
-                                        .addComponent(labelPlataformaUtilizada)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelNomeDoOperador, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(labelNomeDaEmpresa)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(textfieldPlataformaUtilizada)
-                                        .addComponent(textfieldNomeDaEmpresa)
-                                        .addComponent(textfieldNomeDoOperador)
-                                        .addComponent(textfieldId)
-                                        .addComponent(textfieldCodOnline)
-                                        .addComponent(textfieldLinkAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(buttonLimpar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(buttonSair))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(27, Short.MAX_VALUE))))
+                                        .addComponent(labelNomeDoOperador, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(labelNomeDaEmpresa)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textfieldPlataformaUtilizada)
+                                    .addComponent(textfieldNomeDaEmpresa)
+                                    .addComponent(textfieldNomeDoOperador)
+                                    .addComponent(textfieldId)
+                                    .addComponent(textfieldCodOnline)
+                                    .addComponent(textfieldLinkAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboAssembleia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonSair)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +241,8 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSair)
-                    .addComponent(buttonLimpar))
+                    .addComponent(buttonLimpar)
+                    .addComponent(comboAssembleia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -250,6 +264,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
     private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         cadastrarAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonCadastrarActionPerformed
 
     private void buttonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultarActionPerformed
@@ -259,16 +274,89 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
         alterarAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         excluirAssembleia();
         listarTabela();
+        carregaComboAssembleia();
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void textfieldCodOnlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldCodOnlineActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldCodOnlineActionPerformed
+
+    private void tableAssembleiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableAssembleiaMouseClicked
+        selectTableAssembeia();
+    }//GEN-LAST:event_tableAssembleiaMouseClicked
+
+    private void comboAssembleiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAssembleiaActionPerformed
+        selectComboAssembleia();
+    }//GEN-LAST:event_comboAssembleiaActionPerformed
+
+    public void listarTabela() {
+        // estrutura da table
+        DefaultTableModel modelo = (DefaultTableModel) tableAssembleia.getModel();
+        
+        int posicaoLinha = 0;
+        
+        // setta linha da table
+        modelo.setRowCount(posicaoLinha);
+        
+        // percorre cada pessoa
+         for(Online online : GerAssembleiaOnline.getGerAssembleia().getBdAssembleia()){
+            modelo.insertRow(posicaoLinha, new Object [] {
+                online.getId(),
+                online.getNomeDaEmpresa(),
+                online.getNomeDoOperador(),
+                online.getCodOnline(),
+                online.getLinkAcesso(),
+                online.getPlataformaUtilizada()
+            });
+            posicaoLinha++;
+        }
+    } 
+
+    public void selectTableAssembeia(){
+        String valLin = "";
+        int posicaoLinha = tableAssembleia.getSelectedRow();
+        
+        for(int coluna = 0; coluna < tableAssembleia.getColumnCount(); coluna++){
+            valLin += tableAssembleia.getModel().getValueAt(posicaoLinha, coluna).toString();
+            if(coluna+1 < tableAssembleia.getColumnCount()){
+                valLin += " - ";
+            }
+        }
+    
+        JOptionPane.showMessageDialog(
+            null,
+            "Dados selecionados foram \n" + valLin,
+            "Seleção em Tabela",
+            1
+        );
+    }
+
+    public void carregaComboAssembleia(){
+        comboAssembleia.removeAllItems();
+        comboAssembleia.addItem("Escolha uma assembleia");
+        
+        for (Online online : GerAssembleiaOnline.getGerAssembleia().getBdAssembleia()){
+            comboAssembleia.addItem("ID: "+online.getId()+ " - EMPRESA: "+online.getNomeDaEmpresa()+ " - OPERADOR: "+online.getNomeDoOperador());
+        }
+    }
+
+    public void selectComboAssembleia(){
+        if(comboAssembleia.getSelectedIndex()>=1){
+            String valLin = comboAssembleia.getSelectedItem().toString();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Assembleia escolhida: \n" + valLin,
+                    "Seleção de assembleia",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }
 
     public void excluirAssembleia() {
         online = new Online();
@@ -276,7 +364,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
         try {
             online.setId(Integer.parseInt(textfieldId.getText()));
             
-            online = gerAssembleia.consAssembleiaById(online);
+            online = GerAssembleiaOnline.getGerAssembleia().consAssembleiaById(online);
         
             if (online != null) {
                 textfieldId.setText(Integer.toString(online.getId()));
@@ -294,7 +382,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
                 );
                 
                 if (opcao == 0) {
-                    gerAssembleia.removeAssembleiaById(online);
+                    GerAssembleiaOnline.getGerAssembleia().removeAssembleiaById(online);
                     
                     JOptionPane.showMessageDialog(
                         null,
@@ -331,7 +419,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
         try {
             online.setId(Integer.parseInt(textfieldId.getText()));
             
-            online = gerAssembleia.atualizaAssembleiaById(online);
+            online = GerAssembleiaOnline.getGerAssembleia().atualizaAssembleiaById(online);
         
             if (online != null) {
                 textfieldId.setText(Integer.toString(online.getId()));
@@ -368,29 +456,6 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
             textfieldId.requestFocus();
         }
     }
-    
-    public void listarTabela() {
-        // estrutura da table
-        DefaultTableModel modelo = (DefaultTableModel) tableAssembleia.getModel();
-        
-        int posicaoLinha = 0;
-        
-        // setta linha da table
-        modelo.setRowCount(posicaoLinha);
-        
-        // percorre cada pessoa
-        for (Online online : gerAssembleia.getBdAssembleia()) {
-            modelo.insertRow(posicaoLinha, new Object [] {
-                online.getId(),
-                online.getNomeDaEmpresa(),
-                online.getNomeDoOperador(),
-                online.getCodOnline(),
-                online.getLinkAcesso(),
-                online.getPlataformaUtilizada()
-            });
-            posicaoLinha++;
-        }
-    } 
             
     public void consultarAssembleia() {
         online = new Online();
@@ -398,7 +463,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
         try {
             online.setId(Integer.parseInt(textfieldId.getText()));
             
-            online = gerAssembleia.consAssembleiaById(online);
+            online = GerAssembleiaOnline.getGerAssembleia().consAssembleiaById(online);
         
             if (online != null) {
                 textfieldId.setText(Integer.toString(online.getId()));
@@ -448,7 +513,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
             online.setPlataformaUtilizada(textfieldPlataformaUtilizada.getText());
             
             // faz cadastro no gerenciador
-            online = gerAssembleia.cadAssembleia(online);
+            online = GerAssembleiaOnline.getGerAssembleia().cadAssembleia(online);
             
             if (online != null) {
                 JOptionPane.showMessageDialog(
@@ -536,6 +601,7 @@ public class CadAssembleiaOnline extends javax.swing.JFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonSair;
+    private javax.swing.JComboBox<String> comboAssembleia;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCodOnline;
