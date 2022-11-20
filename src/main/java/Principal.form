@@ -18,6 +18,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Presencial"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemAbrirCadPresencialActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="menuItemAbrirCadOnline">
                   <Properties>

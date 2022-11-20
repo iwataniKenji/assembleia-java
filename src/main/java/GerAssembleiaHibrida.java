@@ -64,7 +64,6 @@ public class GerAssembleiaHibrida {
     public Hibrida atualizaAssembleiaById(Hibrida hibrida){
         for(int i = 0; i < bdAssembleiaHibrida.size(); i++){
             if (hibrida.getId() == bdAssembleiaHibrida.get(i).getId()){
-                // retornar dois inputs para modificação de atributo
                 String nome = JOptionPane.showInputDialog(
                     null,
                     "Informe o novo nome da empresa",

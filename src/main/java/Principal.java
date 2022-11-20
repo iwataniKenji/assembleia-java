@@ -1,5 +1,7 @@
 // NOME: KLEVERSON KENJI IWATANI
 // RA: 2465205
+// NETBEANS: versão 15
+// JDK: versão 19.0.1.0
 
 import javax.swing.JOptionPane;
 
@@ -33,6 +35,11 @@ public class Principal extends javax.swing.JFrame {
         submenuCadAssembleia.setText("Abrir Cadastro de Assembleia...");
 
         menuItemAbrirCadPresencial.setText("Presencial");
+        menuItemAbrirCadPresencial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAbrirCadPresencialActionPerformed(evt);
+            }
+        });
         submenuCadAssembleia.add(menuItemAbrirCadPresencial);
 
         menuItemAbrirCadOnline.setText("Online");
@@ -92,6 +99,10 @@ public class Principal extends javax.swing.JFrame {
     private void menuItemFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFecharActionPerformed
         sair();
     }//GEN-LAST:event_menuItemFecharActionPerformed
+
+    private void menuItemAbrirCadPresencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAbrirCadPresencialActionPerformed
+        CadAssembleiaPresencial.getCadAssembleiaPresencial().setVisible(true);
+    }//GEN-LAST:event_menuItemAbrirCadPresencialActionPerformed
 
     public void sair() {
         int response = JOptionPane.showConfirmDialog(

@@ -53,9 +53,9 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelId" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelCodHibrida" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelCodPresencial" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelLinkAcesso" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelCapacidadePessoasSalao" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                           <Component id="labelNomeDoOperador" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelNomeDaEmpresa" min="-2" max="-2" attributes="0"/>
@@ -63,11 +63,11 @@
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="textfieldLinkAcesso" max="32767" attributes="0"/>
+                                      <Component id="textfieldCapacidadePessoasSalao" max="32767" attributes="0"/>
                                       <Component id="textfieldNomeDaEmpresa" max="32767" attributes="0"/>
                                       <Component id="textfieldNomeDoOperador" max="32767" attributes="0"/>
                                       <Component id="textfieldId" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="textfieldCodHibrida" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="textfieldCodPresencial" alignment="0" max="32767" attributes="0"/>
                                       <Component id="textfieldEndereco" alignment="0" min="-2" pref="307" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -107,8 +107,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelCodHibrida" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textfieldCodHibrida" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="labelCodPresencial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textfieldCodPresencial" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -117,8 +117,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelLinkAcesso" min="-2" max="-2" attributes="0"/>
-                  <Component id="textfieldLinkAcesso" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="labelCapacidadePessoasSalao" min="-2" max="-2" attributes="0"/>
+                  <Component id="textfieldCapacidadePessoasSalao" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -145,7 +145,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="32" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CADASTRO DE ASSEMBLEIAS H&#xcd;BRIDAS"/>
+        <Property name="text" type="java.lang.String" value="CADASTRO DE ASSEMBLEIAS PRESENCIAIS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelId">
@@ -172,12 +172,12 @@
         <Property name="text" type="java.lang.String" value="NOME DO OPERADOR:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelCodHibrida">
+    <Component class="javax.swing.JLabel" name="labelCodPresencial">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="C&#xd3;DIGO H&#xcd;BRIDA:"/>
+        <Property name="text" type="java.lang.String" value="C&#xd3;DIGO PRESENCIAL:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelEndereco">
@@ -188,12 +188,12 @@
         <Property name="text" type="java.lang.String" value="ENDERE&#xc7;O:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelLinkAcesso">
+    <Component class="javax.swing.JLabel" name="labelCapacidadePessoasSalao">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="LINK DE ACESSO:"/>
+        <Property name="text" type="java.lang.String" value="CAPACIDADE DE PESSOAS NO SAL&#xc3;O:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textfieldId">
@@ -205,14 +205,14 @@
     </Component>
     <Component class="javax.swing.JTextField" name="textfieldNomeDoOperador">
     </Component>
-    <Component class="javax.swing.JTextField" name="textfieldCodHibrida">
+    <Component class="javax.swing.JTextField" name="textfieldCodPresencial">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textfieldCodHibridaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textfieldCodPresencialActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textfieldEndereco">
     </Component>
-    <Component class="javax.swing.JTextField" name="textfieldLinkAcesso">
+    <Component class="javax.swing.JTextField" name="textfieldCapacidadePessoasSalao">
     </Component>
     <Component class="javax.swing.JButton" name="buttonLimpar">
       <Properties>
@@ -278,7 +278,7 @@
                 <Column editable="true" title="OPERADOR" type="java.lang.Object"/>
                 <Column editable="true" title="CODIGO" type="java.lang.Object"/>
                 <Column editable="true" title="ENDERE&#xc7;O" type="java.lang.Object"/>
-                <Column editable="true" title="LINK" type="java.lang.Object"/>
+                <Column editable="true" title="CAP. PESSOAS" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

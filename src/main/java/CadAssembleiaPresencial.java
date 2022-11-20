@@ -4,23 +4,23 @@
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class CadAssembleiaHibrida extends javax.swing.JFrame {
+public class CadAssembleiaPresencial extends javax.swing.JFrame {
     
     // para uso nos botões
-    private Hibrida hibrida;
-    private static GerAssembleiaHibrida gerAssembleia = new GerAssembleiaHibrida();
+    private Presencial presencial;
+    private static GerAssembleiaPresencial gerAssembleia = new GerAssembleiaPresencial();
     
-    private static CadAssembleiaHibrida cadAssembleiaHibridaUnico;
+    private static CadAssembleiaPresencial cadAssembleiaPresencialUnico;
 
-    public CadAssembleiaHibrida() {
+    public CadAssembleiaPresencial() {
         initComponents();
     }
     
-    public static CadAssembleiaHibrida getCadAssembleiaHibrida() {
-        if (cadAssembleiaHibridaUnico == null) {
-            cadAssembleiaHibridaUnico = new CadAssembleiaHibrida();
+    public static CadAssembleiaPresencial getCadAssembleiaPresencial() {
+        if (cadAssembleiaPresencialUnico == null) {
+            cadAssembleiaPresencialUnico = new CadAssembleiaPresencial();
         }
-        return cadAssembleiaHibridaUnico;
+        return cadAssembleiaPresencialUnico;
     }
 
     @SuppressWarnings("unchecked")
@@ -32,15 +32,15 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         labelId = new javax.swing.JLabel();
         labelNomeDaEmpresa = new javax.swing.JLabel();
         labelNomeDoOperador = new javax.swing.JLabel();
-        labelCodHibrida = new javax.swing.JLabel();
+        labelCodPresencial = new javax.swing.JLabel();
         labelEndereco = new javax.swing.JLabel();
-        labelLinkAcesso = new javax.swing.JLabel();
+        labelCapacidadePessoasSalao = new javax.swing.JLabel();
         textfieldId = new javax.swing.JTextField();
         textfieldNomeDaEmpresa = new javax.swing.JTextField();
         textfieldNomeDoOperador = new javax.swing.JTextField();
-        textfieldCodHibrida = new javax.swing.JTextField();
+        textfieldCodPresencial = new javax.swing.JTextField();
         textfieldEndereco = new javax.swing.JTextField();
-        textfieldLinkAcesso = new javax.swing.JTextField();
+        textfieldCapacidadePessoasSalao = new javax.swing.JTextField();
         buttonLimpar = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
         buttonCadastrar = new javax.swing.JButton();
@@ -56,7 +56,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         setTitle("Cadastro de Assembleias Híbridas");
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        labelTitulo.setText("CADASTRO DE ASSEMBLEIAS HÍBRIDAS");
+        labelTitulo.setText("CADASTRO DE ASSEMBLEIAS PRESENCIAIS");
 
         labelId.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelId.setText("ID:");
@@ -67,14 +67,14 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         labelNomeDoOperador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelNomeDoOperador.setText("NOME DO OPERADOR:");
 
-        labelCodHibrida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelCodHibrida.setText("CÓDIGO HÍBRIDA:");
+        labelCodPresencial.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelCodPresencial.setText("CÓDIGO PRESENCIAL:");
 
         labelEndereco.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelEndereco.setText("ENDEREÇO:");
 
-        labelLinkAcesso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelLinkAcesso.setText("LINK DE ACESSO:");
+        labelCapacidadePessoasSalao.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelCapacidadePessoasSalao.setText("CAPACIDADE DE PESSOAS NO SALÃO:");
 
         textfieldNomeDaEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,9 +82,9 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
             }
         });
 
-        textfieldCodHibrida.addActionListener(new java.awt.event.ActionListener() {
+        textfieldCodPresencial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textfieldCodHibridaActionPerformed(evt);
+                textfieldCodPresencialActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "EMPRESA", "OPERADOR", "CODIGO", "ENDEREÇO", "LINK"
+                "ID", "EMPRESA", "OPERADOR", "CODIGO", "ENDEREÇO", "CAP. PESSOAS"
             }
         ));
         jScrollPane1.setViewportView(tableAssembleia);
@@ -167,19 +167,19 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(labelId)
-                                        .addComponent(labelCodHibrida)
+                                        .addComponent(labelCodPresencial)
                                         .addComponent(labelEndereco)
-                                        .addComponent(labelLinkAcesso)
+                                        .addComponent(labelCapacidadePessoasSalao)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(labelNomeDoOperador, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(labelNomeDaEmpresa)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(textfieldLinkAcesso)
+                                        .addComponent(textfieldCapacidadePessoasSalao)
                                         .addComponent(textfieldNomeDaEmpresa)
                                         .addComponent(textfieldNomeDoOperador)
                                         .addComponent(textfieldId)
-                                        .addComponent(textfieldCodHibrida)
+                                        .addComponent(textfieldCodPresencial)
                                         .addComponent(textfieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(buttonLimpar)
@@ -207,16 +207,16 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                     .addComponent(textfieldNomeDoOperador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCodHibrida)
-                    .addComponent(textfieldCodHibrida, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCodPresencial)
+                    .addComponent(textfieldCodPresencial, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEndereco)
                     .addComponent(textfieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelLinkAcesso)
-                    .addComponent(textfieldLinkAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCapacidadePessoasSalao)
+                    .addComponent(textfieldCapacidadePessoasSalao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCadastrar)
@@ -266,25 +266,25 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         listarTabela();
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
-    private void textfieldCodHibridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldCodHibridaActionPerformed
+    private void textfieldCodPresencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldCodPresencialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textfieldCodHibridaActionPerformed
+    }//GEN-LAST:event_textfieldCodPresencialActionPerformed
 
     public void excluirAssembleia() {
-        hibrida = new Hibrida();
+        presencial = new Presencial();
         
         try {
-            hibrida.setId(Integer.parseInt(textfieldId.getText()));
+            presencial.setId(Integer.parseInt(textfieldId.getText()));
             
-            hibrida = gerAssembleia.consAssembleiaById(hibrida);
+            presencial = gerAssembleia.consAssembleiaById(presencial);
         
-            if (hibrida != null) {
-                textfieldId.setText(Integer.toString(hibrida.getId()));
-                textfieldNomeDaEmpresa.setText(hibrida.getNomeDaEmpresa());
-                textfieldNomeDoOperador.setText(hibrida.getNomeDoOperador());
-                textfieldCodHibrida.setText(Integer.toString(hibrida.getCodHibrida()));
-                textfieldEndereco.setText(hibrida.getEndereco());
-                textfieldLinkAcesso.setText(hibrida.getLinkAcesso());
+            if (presencial != null) {
+                textfieldId.setText(Integer.toString(presencial.getId()));
+                textfieldNomeDaEmpresa.setText(presencial.getNomeDaEmpresa());
+                textfieldNomeDoOperador.setText(presencial.getNomeDoOperador());
+                textfieldCodPresencial.setText(Integer.toString(presencial.getCodPresencial()));
+                textfieldEndereco.setText(presencial.getEndereco());
+                textfieldCapacidadePessoasSalao.setText(Integer.toString(presencial.getCapacidadePessoasSalao()));
 
                 int opcao = JOptionPane.showConfirmDialog(
                     null,
@@ -294,12 +294,12 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
                 );
                 
                 if (opcao == 0) {
-                    gerAssembleia.removeAssembleiaById(hibrida);
+                    gerAssembleia.removeAssembleiaById(presencial);
                     
                     JOptionPane.showMessageDialog(
                         null,
-                        "Assembleia híbrida excluida com sucesso",
-                        "Exclusão de assembleia híbrida",
+                        "Assembleia presencial excluida com sucesso",
+                        "Exclusão de assembleia presencial",
                         JOptionPane.INFORMATION_MESSAGE
                     );
                     limparTextfield();
@@ -307,7 +307,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Não existe assembleia híbrida com esse ID",
+                    "Não existe assembleia presencial com esse ID",
                     "ID inexistente",
                     JOptionPane.ERROR_MESSAGE
                 );
@@ -326,32 +326,32 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     }
     
     public void alterarAssembleia() {
-        hibrida = new Hibrida();
+        presencial = new Presencial();
         
         try {
-            hibrida.setId(Integer.parseInt(textfieldId.getText()));
+            presencial.setId(Integer.parseInt(textfieldId.getText()));
             
-            hibrida = gerAssembleia.atualizaAssembleiaById(hibrida);
+            presencial = gerAssembleia.atualizaAssembleiaById(presencial);
         
-            if (hibrida != null) {
-                textfieldId.setText(Integer.toString(hibrida.getId()));
-                textfieldNomeDaEmpresa.setText(hibrida.getNomeDaEmpresa());
-                textfieldNomeDoOperador.setText(hibrida.getNomeDoOperador());
-                textfieldCodHibrida.setText(Integer.toString(hibrida.getCodHibrida()));
-                textfieldEndereco.setText(hibrida.getEndereco());
-                textfieldLinkAcesso.setText(hibrida.getLinkAcesso());
+            if (presencial != null) {
+                textfieldId.setText(Integer.toString(presencial.getId()));
+                textfieldNomeDaEmpresa.setText(presencial.getNomeDaEmpresa());
+                textfieldNomeDoOperador.setText(presencial.getNomeDoOperador());
+                textfieldCodPresencial.setText(Integer.toString(presencial.getCodPresencial()));
+                textfieldEndereco.setText(presencial.getEndereco());
+                textfieldCapacidadePessoasSalao.setText(Integer.toString(presencial.getCapacidadePessoasSalao()));
 
                 JOptionPane.showMessageDialog(
                     null,
-                    "Confirme os dados atualizados da assembleia híbrida",
-                    "Atualização de assembleia híbrida",
+                    "Confirme os dados atualizados da assembleia presencial",
+                    "Atualização de assembleia presencial",
                     JOptionPane.INFORMATION_MESSAGE
                 );
                 limparTextfield();
             } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Não existe assembleia híbrida com esse ID",
+                    "Não existe assembleia presencial com esse ID",
                     "ID inexistente",
                     JOptionPane.ERROR_MESSAGE
                 );
@@ -379,38 +379,38 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         modelo.setRowCount(posicaoLinha);
         
         // percorre cada pessoa
-        for (Hibrida hibrida : gerAssembleia.getBdAssembleia()) {
+        for (Presencial presencial : gerAssembleia.getBdAssembleia()) {
             modelo.insertRow(posicaoLinha, new Object [] {
-                hibrida.getId(),
-                hibrida.getNomeDaEmpresa(),
-                hibrida.getNomeDoOperador(),
-                hibrida.getCodHibrida(),
-                hibrida.getEndereco(),
-                hibrida.getLinkAcesso()
+                presencial.getId(),
+                presencial.getNomeDaEmpresa(),
+                presencial.getNomeDoOperador(),
+                presencial.getCodPresencial(),
+                presencial.getEndereco(),
+                presencial.getCapacidadePessoasSalao()
             });
             posicaoLinha++;
         }
     } 
             
     public void consultarAssembleia() {
-        hibrida = new Hibrida();
+        presencial = new Presencial();
         
         try {
-            hibrida.setId(Integer.parseInt(textfieldId.getText()));
+            presencial.setId(Integer.parseInt(textfieldId.getText()));
             
-            hibrida = gerAssembleia.consAssembleiaById(hibrida);
+            presencial = gerAssembleia.consAssembleiaById(presencial);
         
-            if (hibrida != null) {
-                textfieldId.setText(Integer.toString(hibrida.getId()));
-                textfieldNomeDaEmpresa.setText(hibrida.getNomeDaEmpresa());
-                textfieldNomeDoOperador.setText(hibrida.getNomeDoOperador());
-                textfieldCodHibrida.setText(Integer.toString(hibrida.getCodHibrida()));
-                textfieldEndereco.setText(hibrida.getEndereco());
-                textfieldLinkAcesso.setText(hibrida.getLinkAcesso());
+            if (presencial != null) {
+                textfieldId.setText(Integer.toString(presencial.getId()));
+                textfieldNomeDaEmpresa.setText(presencial.getNomeDaEmpresa());
+                textfieldNomeDoOperador.setText(presencial.getNomeDoOperador());
+                textfieldCodPresencial.setText(Integer.toString(presencial.getCodPresencial()));
+                textfieldEndereco.setText(presencial.getEndereco());
+                textfieldCapacidadePessoasSalao.setText(Integer.toString(presencial.getCapacidadePessoasSalao()));
 
                 JOptionPane.showMessageDialog(
                     null,
-                    "Confirme os dados da assembleia híbrida",
+                    "Confirme os dados da assembleia presencial",
                     "Confirmação de dados",
                     JOptionPane.INFORMATION_MESSAGE
                 );
@@ -418,7 +418,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Não existe assembleia híbrida com esse ID",
+                    "Não existe assembleia presencial com esse ID",
                     "ID inexistente",
                     JOptionPane.ERROR_MESSAGE
                 );
@@ -437,23 +437,23 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     }
     
     public void cadastrarAssembleia() {
-        hibrida = new Hibrida();
+        presencial = new Presencial();
         
         try {
-            hibrida.setId(Integer.parseInt(textfieldId.getText()));
-            hibrida.setNomeDaEmpresa(textfieldNomeDaEmpresa.getText());
-            hibrida.setNomeDoOperador(textfieldNomeDoOperador.getText());
-            hibrida.setCodHibrida(Integer.parseInt(textfieldCodHibrida.getText()));
-            hibrida.setEndereco(textfieldEndereco.getText());
-            hibrida.setLinkAcesso(textfieldLinkAcesso.getText());
+            presencial.setId(Integer.parseInt(textfieldId.getText()));
+            presencial.setNomeDaEmpresa(textfieldNomeDaEmpresa.getText());
+            presencial.setNomeDoOperador(textfieldNomeDoOperador.getText());
+            presencial.setCodPresencial(Integer.parseInt(textfieldCodPresencial.getText()));
+            presencial.setEndereco(textfieldEndereco.getText());
+            presencial.setCapacidadePessoasSalao(Integer.parseInt(textfieldCapacidadePessoasSalao.getText()));
             
             // faz cadastro no gerenciador
-            hibrida = gerAssembleia.cadAssembleia(hibrida);
+            presencial = gerAssembleia.cadAssembleia(presencial);
             
-            if (hibrida != null) {
+            if (presencial != null) {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Assembleia híbrida cadastrada com sucesso",
+                    "Assembleia presencial cadastrada com sucesso",
                     "Cadastro feito",
                     JOptionPane.INFORMATION_MESSAGE
                 );
@@ -461,7 +461,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Já existe uma assembleia híbrida com esse ID",
+                    "Já existe uma assembleia presencial com esse ID",
                     "Erro de ID",
                     JOptionPane.ERROR_MESSAGE
                 );
@@ -482,9 +482,9 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
         textfieldId.setText("");
         textfieldNomeDaEmpresa.setText("");
         textfieldNomeDoOperador.setText("");
-        textfieldCodHibrida.setText("");
+        textfieldCodPresencial.setText("");
         textfieldEndereco.setText("");
-        textfieldLinkAcesso.setText("");
+        textfieldCapacidadePessoasSalao.setText("");
         
         // recuperar foco na caixa que chamou o método
         textfieldId.requestFocus();
@@ -524,7 +524,7 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadAssembleiaHibrida().setVisible(true);
+                new CadAssembleiaPresencial().setVisible(true);
             }
         });
     }
@@ -538,18 +538,18 @@ public class CadAssembleiaHibrida extends javax.swing.JFrame {
     private javax.swing.JButton buttonSair;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCodHibrida;
+    private javax.swing.JLabel labelCapacidadePessoasSalao;
+    private javax.swing.JLabel labelCodPresencial;
     private javax.swing.JLabel labelEndereco;
     private javax.swing.JLabel labelId;
-    private javax.swing.JLabel labelLinkAcesso;
     private javax.swing.JLabel labelNomeDaEmpresa;
     private javax.swing.JLabel labelNomeDoOperador;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JTable tableAssembleia;
-    private javax.swing.JTextField textfieldCodHibrida;
+    private javax.swing.JTextField textfieldCapacidadePessoasSalao;
+    private javax.swing.JTextField textfieldCodPresencial;
     private javax.swing.JTextField textfieldEndereco;
     private javax.swing.JTextField textfieldId;
-    private javax.swing.JTextField textfieldLinkAcesso;
     private javax.swing.JTextField textfieldNomeDaEmpresa;
     private javax.swing.JTextField textfieldNomeDoOperador;
     // End of variables declaration//GEN-END:variables
