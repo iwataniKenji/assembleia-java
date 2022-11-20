@@ -33,6 +33,11 @@ public class Principal extends javax.swing.JFrame {
         menuCadAssembleia.setText("Cadastro");
 
         submenuCadAssembleia.setText("Abrir Cadastro de Assembleia...");
+        submenuCadAssembleia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submenuCadAssembleiaActionPerformed(evt);
+            }
+        });
 
         menuItemAbrirCadPresencial.setText("Presencial");
         menuItemAbrirCadPresencial.addActionListener(new java.awt.event.ActionListener() {
@@ -43,6 +48,11 @@ public class Principal extends javax.swing.JFrame {
         submenuCadAssembleia.add(menuItemAbrirCadPresencial);
 
         menuItemAbrirCadOnline.setText("Online");
+        menuItemAbrirCadOnline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAbrirCadOnlineActionPerformed(evt);
+            }
+        });
         submenuCadAssembleia.add(menuItemAbrirCadOnline);
 
         menuItemAbrirCadHibrida.setText("Híbrida");
@@ -103,6 +113,14 @@ public class Principal extends javax.swing.JFrame {
     private void menuItemAbrirCadPresencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAbrirCadPresencialActionPerformed
         CadAssembleiaPresencial.getCadAssembleiaPresencial().setVisible(true);
     }//GEN-LAST:event_menuItemAbrirCadPresencialActionPerformed
+
+    private void submenuCadAssembleiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuCadAssembleiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submenuCadAssembleiaActionPerformed
+
+    private void menuItemAbrirCadOnlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAbrirCadOnlineActionPerformed
+        CadAssembleiaOnline.getCadAssembleiaOnline().setVisible(true);
+    }//GEN-LAST:event_menuItemAbrirCadOnlineActionPerformed
 
     public void sair() {
         int response = JOptionPane.showConfirmDialog(
